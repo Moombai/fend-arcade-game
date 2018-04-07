@@ -33,14 +33,16 @@ Enemy.prototype.render = function() {
 // This class requires an update(), render() and
 // a handleInput() method.
 class Player {
-    constructor() {
-
+    constructor(x,y) {
+        this.x = x;
+        this.y = y;
+        this.sprite = 'images/char-boy.png';
     }
     update() {
 
     }
     render() {
-
+        ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
     }
 }
 
@@ -52,7 +54,7 @@ const enemy2 = new Enemy(-100,145);
 const enemy3 = new Enemy(-100, 230);
 const allEnemies = [enemy1, enemy2, enemy3];
 
-const player = new Player();
+const player = new Player(200,400);
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
