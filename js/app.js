@@ -9,6 +9,8 @@ var Enemy = function(x,y) {
     // enemy position
     this.x = x;
     this.y = y;
+    this.speed = 300;
+    // TODO: randomize enemy speed
 };
 
 // Update the enemy's position, required method for game
@@ -17,8 +19,7 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
-    // TODO: randomize enemy speed
-    this.x = this.x + (300 * dt);
+    this.x = this.x + (this.speed * dt);
     if(this.x > 500) {
         this.x = -100;
     }
