@@ -45,6 +45,25 @@ class Player {
     render() {
         ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
     }
+    handleInput(keyPress) {
+        // player movement
+        switch (keyPress) {
+            case "up":
+                this.y = this.y - 100;
+                break;
+            case "down":
+                this.y = this.y + 100;
+                break;
+            case "left":
+                this.x = this.x - 100;
+                break;
+            case "right":
+                this.x = this.x + 100;
+                break;
+            default:
+                console.log("Invalid input");
+        }
+    }
 }
 
 // Now instantiate your objects.
