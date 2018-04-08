@@ -29,8 +29,7 @@ Enemy.prototype.update = function(dt) {
     // detect collision
     if(this.x > player.x && this.x < player.x + player.width ) {
         if(this.y > player.y && this.y < player.y + player.height) {
-            player.x = 200;
-            player.y = 390;
+            player.positionRest();
         }
     }
 };
