@@ -49,10 +49,10 @@ class Player {
         // player movement
         switch (keyPress) {
             case "up":
-                this.y = this.y - 100;
+                this.y = this.y - 85;
                 break;
             case "down":
-                this.y = this.y + 100;
+                this.y = this.y + 85;
                 break;
             case "left":
                 this.x = this.x - 100;
@@ -74,7 +74,7 @@ const enemy2 = new Enemy(-100,145);
 const enemy3 = new Enemy(-100, 230);
 const allEnemies = [enemy1, enemy2, enemy3];
 
-const player = new Player(200,400);
+const player = new Player(200,390);
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
