@@ -9,6 +9,8 @@ var Enemy = function(x,y) {
     // enemy position
     this.x = x;
     this.y = y;
+    this.speed = 300;
+    // TODO: randomize enemy speed
 };
 
 // Update the enemy's position, required method for game
@@ -17,10 +19,16 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
-    // TODO: randomize enemy speed
-    this.x = this.x + (300 * dt);
+    this.x = this.x + (this.speed * dt);
     if(this.x > 500) {
         this.x = -100;
+    }
+    // detect collision
+    if(this.x > player.x && this.x < player.x + player.width ) {
+        if(this.y > player.y && this.y < player.y + player.height) {
+            player.x = 200;
+            player.y = 390;
+        }
     }
 };
 
@@ -33,14 +41,37 @@ Enemy.prototype.render = function() {
 // This class requires an update(), render() and
 // a handleInput() method.
 class Player {
-    constructor() {
-
+    constructor(x,y) {
+        this.x = x;
+        this.y = y;
+        this.sprite = 'images/char-boy.png';
+        this.width = 100;
+        this.height = 80;
     }
     update() {
-
+        // this is always running
     }
     render() {
-
+        ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+    }
+    handleInput(keyPress) {
+        // player movement
+        switch (keyPress) {
+            case "up":
+                this.y = this.y - 85 < 50 ? this.y : this.y - 85;
+                break;
+            case "down":
+                this.y = this.y + 85 > 390 ? this.y : this.y + 85;
+                break;
+            case "left":
+                this.x = this.x - 100 < 0 ? this.x : this.x - 100;
+                break;
+            case "right":
+                this.x = this.x + 100 > 400 ? this.x : this.x + 100;
+                break;
+            default:
+                console.log("x: " + this.x, "y: " + this.y);
+        }
     }
 }
 
@@ -52,7 +83,7 @@ const enemy2 = new Enemy(-100,145);
 const enemy3 = new Enemy(-100, 230);
 const allEnemies = [enemy1, enemy2, enemy3];
 
-const player = new Player();
+const player = new Player(200,390);
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
