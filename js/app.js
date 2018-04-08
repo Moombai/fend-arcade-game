@@ -9,7 +9,8 @@ var Enemy = function(x,y) {
     // enemy position
     this.x = x;
     this.y = y;
-    this.speed = 300;
+    this.randomFactor = Math.floor(Math.random() * 500);
+    this.speed = 100 + this.randomFactor;
     // TODO: randomize enemy speed
 };
 
@@ -22,6 +23,8 @@ Enemy.prototype.update = function(dt) {
     this.x = this.x + (this.speed * dt);
     if(this.x > 500) {
         this.x = -100;
+        this.randomFactor = Math.floor(Math.random() * 500);
+        this.speed = 100 + this.randomFactor;
     }
     // detect collision
     if(this.x > player.x && this.x < player.x + player.width ) {
@@ -79,8 +82,8 @@ class Player {
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
 const enemy1 = new Enemy(-100,60);
-const enemy2 = new Enemy(-100,145);
-const enemy3 = new Enemy(-100, 230);
+const enemy2 = new Enemy(-130,145);
+const enemy3 = new Enemy(-300, 230);
 const allEnemies = [enemy1, enemy2, enemy3];
 
 const player = new Player(200,390);
