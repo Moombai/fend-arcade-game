@@ -23,6 +23,13 @@ Enemy.prototype.update = function(dt) {
     if(this.x > 500) {
         this.x = -100;
     }
+    // detect collision
+    if(this.x > player.x && this.x < player.x + player.width ) {
+        if(this.y > player.y && this.y < player.y + player.height) {
+            player.x = 200;
+            player.y = 390;
+        }
+    }
 };
 
 // Draw the enemy on the screen, required method for game
@@ -38,9 +45,11 @@ class Player {
         this.x = x;
         this.y = y;
         this.sprite = 'images/char-boy.png';
+        this.width = 100;
+        this.height = 80;
     }
     update() {
-
+        // this is always running
     }
     render() {
         ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
