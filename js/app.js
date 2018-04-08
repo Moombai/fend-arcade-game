@@ -61,7 +61,7 @@ class Player {
         // player movement
         switch (keyPress) {
             case "up":
-                this.y = this.y - 85 < 50 ? this.y : this.y - 85;
+                this.y = this.y - 85 < 50 ? 390 : this.y - 85;
                 break;
             case "down":
                 this.y = this.y + 85 > 390 ? this.y : this.y + 85;
