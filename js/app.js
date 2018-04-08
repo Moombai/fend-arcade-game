@@ -49,19 +49,19 @@ class Player {
         // player movement
         switch (keyPress) {
             case "up":
-                this.y = this.y - 85;
+                this.y = this.y - 85 < 50 ? this.y : this.y - 85;
                 break;
             case "down":
-                this.y = this.y + 85;
+                this.y = this.y + 85 > 390 ? this.y : this.y + 85;
                 break;
             case "left":
-                this.x = this.x - 100;
+                this.x = this.x - 100 < 0 ? this.x : this.x - 100;
                 break;
             case "right":
-                this.x = this.x + 100;
+                this.x = this.x + 100 > 400 ? this.x : this.x + 100;
                 break;
             default:
-                console.log("Invalid input");
+                console.log("x: " + this.x, "y: " + this.y);
         }
     }
 }
