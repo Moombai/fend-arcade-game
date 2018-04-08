@@ -50,9 +50,15 @@ class Player {
         this.sprite = 'images/char-boy.png';
         this.width = 100;
         this.height = 80;
+        this.default_x = x;
+        this.default_y = y;
     }
     update() {
         // this is always running
+    }
+    positionRest() {
+        this.x = this.default_x;
+        this.y = this.default_y;
     }
     render() {
         ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
@@ -61,7 +67,11 @@ class Player {
         // player movement
         switch (keyPress) {
             case "up":
-                this.y = this.y - 85 < 50 ? 390 : this.y - 85;
+                if (this.y - 85 < 50) {
+                    this.positionRest();
+                } else {
+                    this.y = this.y - 85;
+                }
                 break;
             case "down":
                 this.y = this.y + 85 > 390 ? this.y : this.y + 85;
